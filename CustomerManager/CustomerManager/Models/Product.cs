@@ -1,6 +1,11 @@
-﻿namespace CustomerManager.Repositories
+﻿
+
+namespace CustomerManager.Models
 {
-    public class Product
+    public class Product : BaseModel
     {
+        public string Name { get; set; }
+        public int Quantity { get; set; }
+        public double Price { get; set; }
     }
 }

@@ -12,6 +12,8 @@ using CustomerManager.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using CustomerManager.Services;
+using CustomerManager.Repositories;
 
 namespace CustomerManager
 {
@@ -34,6 +36,10 @@ namespace CustomerManager
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IProductRepositories, ProductRespositories>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,7 +68,7 @@ namespace CustomerManager
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=CustomerManager}/{action=Index}/{id?}");
+                    pattern: "{controller=Product}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
